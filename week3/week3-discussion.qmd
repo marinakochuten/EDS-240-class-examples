@@ -1,0 +1,31 @@
+---
+title: "Alt-text"
+author: "Marina Kochuten"
+format: html
+---
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+#| fig-alt: "A histogram of penguin body mass in grams where Gentoo is on average 2000 grams larger than Adelie and Chinstrap."
+
+library(ggplot2)
+library(palmerpenguins)
+
+ggplot(data = penguins, aes(x = body_mass_g, fill = species)) +
+  geom_histogram(alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Body mass (g)",
+       y = "Frequency",
+       title = "Penguin body masses")
+
+```
+
+![](nyt-monthly-temp.png){fig-alt="A dot plot comparing monthly global temperature from 1850 - 2023, showing a warming trend. Every month has been hotter than the 20th century average since 1975. There has been 12 record breaking hot months between 2015 and 2023."}
+
+<img src="chapman-etal-2024.png" alt="A world map showing number of species observations in the Global Biodiversity Information Facility database highlighted in yellow. There is an overall trend of higher number of observations in high-income countries." width="700px"/>
+
+<img src="aqi.png" alt="A line chart showing air quality index levels as daily aqi and 5-day average aqi in Santa Barbara County from Jan 2017 - Nov 2018. The 2017 Thomas Fire start date is highlighted, followed by a large spike in aqi, where the daily aqi broke the hazardous threshold and the 5 day average broke the very unhealthy threshold" width="700px"/>
