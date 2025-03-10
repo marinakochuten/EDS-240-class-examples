@@ -1,9 +1,6 @@
 ---
-title: "Lecture 6.1 TEMPLATE"
-subtitle: "Typography"
-author: "Your Name"
-date: 2025-02-10
-toc: true
+title: "week6-discussion"
+format: html
 ---
 
 ::: {.callout-note}
@@ -76,6 +73,7 @@ font_add_google(name = "Josefin Sans", family = "josefin")
 font_add_google(name = "Sen", family = "sen")
 
 showtext_auto()
+showtext_opts(dpi = 300)
 
 #....................import Font Awesome fonts...................
 font_add(family = "fa-brands",
@@ -260,29 +258,36 @@ plot <- ggplot(subset_jobs) +
   labs(title = "Males earn more than females across occupations",
        subtitle = subtitle,
        caption = caption) +
-  theme_minimal() +
+  theme_minimal(base_size = 18) +
   theme(plot.title.position = "plot",
         plot.title = element_text(family = "josefin",
                                   face = "bold",
-                                  size = 18,
+                                  size = rel(1.7),
                                   color = earnings_pal["dark_text"]),
         plot.subtitle = ggtext::element_textbox(family = "sen",
-                                     size = 11.5,
+                                     size = rel(1.1),
                                      color = earnings_pal["light_text"],
+                                     #fill = "lightblue",
+                                     width = unit(30, "cm"),
+                                     padding = margin(t = 5, b = 5),
                                      margin = margin(2, 0, 6, 0)),
         plot.caption = element_textbox(family = "sen",
                                     face = "italic",
                                     color = earnings_pal["light_text"],
+                                   # fill = "lightblue",
+                                    width = unit(12, "cm"),
+                                    padding = margin(t = 10, b = 10),
                                     margin = margin(t = 15)),
         strip.text = element_text(family = "josefin",
                                   face = "bold",
-                                  size = 10,
+                                  size = rel(1.1),
                                   hjust = 0),
         panel.spacing.y = unit(0.5, "cm"),
         axis.text = element_text(family = "sen",
-                                 size = 9,
+                                 size = rel(0.8),
                                  color = earnings_pal["light_text"]),
-        axis.title = element_blank()
+        axis.title = element_blank(),
+        plot.background = element_rect(fill = "white")
         )
 
 plot
@@ -299,8 +304,30 @@ ggsave(filename = here::here("week6", "images", "salary_plot.png"),
        device = "png",
        width = 8,
        height = 7,
-       unit = "in")
+       unit = "in",
+       dpi = 300)
 ```
+
+```{r}
+ggsave(filename = here::here("week6", "images", "salary_plot_14x12.png"),
+       plot = plot,
+       device = "png",
+       width = 14,
+       height = 12,
+       unit = "in",
+       dpi = 300)
+```
+
+```{r}
+ggsave(filename = here::here("week6", "images", "salary_plot_5x5.png"),
+       plot = plot,
+       device = "png",
+       width = 5,
+       height = 5,
+       unit = "in",
+       dpi = 300)
+```
+
 
 ## Turn of `{showtext}` text rendering
 
@@ -308,3 +335,4 @@ ggsave(filename = here::here("week6", "images", "salary_plot.png"),
 # turn off {showtext} text rendering ----
 showtext_auto(FALSE)
 ```
+
